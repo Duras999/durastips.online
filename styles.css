@@ -1,0 +1,40 @@
+:root {
+  color-scheme: dark;
+  --cream: #fffdf7;
+  --muted: rgba(226, 222, 210, 0.82);
+  --accent: #f2f0e9;
+  --green: #70d991;
+  --green-ink: #10291a;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-synthesis: none;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: #171510; }
+body { min-width: 320px; }
+.stage { position: relative; width: 100%; min-height: 100vh; min-height: 100dvh; overflow: hidden; isolation: isolate; }
+.stage__media, .stage__veil { position: absolute; inset: 0; width: 100%; height: 100%; }
+.stage__media { object-fit: cover; object-position: 60% center; z-index: -2; }
+.stage__veil { z-index: -1; background: linear-gradient(180deg, rgba(42, 36, 25, 0.62) 0%, rgba(29, 25, 18, 0.25) 35%, rgba(13, 12, 10, 0.9) 100%); }
+.hint { position: absolute; z-index: 2; inset: 0 0 auto; padding: max(24px, env(safe-area-inset-top)) 20px 0; }
+.hint__inner { max-width: 448px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.hint__label { display: inline-flex; align-items: center; gap: 5px; padding: 8px 16px; border: 1px solid rgba(242, 240, 233, 0.6); border-radius: 999px; color: var(--accent); background: rgba(35, 31, 24, 0.56); backdrop-filter: blur(8px); font-size: 11px; font-weight: 700; letter-spacing: 0.18em; line-height: 1.5; text-transform: uppercase; white-space: nowrap; }
+.hint__arrow { width: 96px; height: 96px; flex: none; margin-top: -4px; color: var(--accent); filter: drop-shadow(0 2px 10px rgba(0,0,0,.55)); animation: arrow-nudge 1.6s ease-in-out infinite; }
+.hint__arrow path { fill: none; stroke: currentColor; stroke-width: 11; stroke-linecap: round; stroke-linejoin: round; }
+.content { width: 100%; max-width: 448px; min-height: 100vh; min-height: 100dvh; margin: 0 auto; padding: 116px 24px 40px; display: flex; flex-direction: column; justify-content: center; text-align: center; }
+.card { padding: 28px 24px; border: 1px solid rgba(255,253,247,.1); border-radius: 24px; background: rgba(33, 29, 22, .90); box-shadow: 0 25px 50px -12px rgba(0,0,0,.68); backdrop-filter: blur(2px); animation: card-in .65s cubic-bezier(.2,.8,.2,1) both; }
+.lock { width: 56px; height: 56px; margin: 0 auto 20px; border: 1px solid rgba(242,240,233,.4); border-radius: 50%; display: grid; place-items: center; background: rgba(35,31,24,.56); color: var(--cream); }
+.lock svg { width: 27px; height: 27px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.lock svg circle { fill: currentColor; stroke: none; }
+h1 { margin: 0; color: var(--cream); font-size: 22px; font-weight: 800; line-height: 1.375; letter-spacing: -.025em; text-wrap: balance; text-shadow: 0 2px 12px rgba(0,0,0,.6); }
+h1 span { margin-inline: 4px; color: var(--green); }
+.description { margin: 16px 0 0; color: var(--muted); font-size: 15px; line-height: 1.625; }
+.cta { width: 100%; margin-top: 28px; padding: 20px 24px; display: inline-flex; align-items: center; justify-content: center; border-radius: 16px; background: var(--green); color: var(--green-ink); box-shadow: 0 18px 45px -12px rgba(61, 205, 105, .55); font-size: 16px; font-weight: 800; letter-spacing: .025em; line-height: 1.5; text-decoration: none; text-transform: uppercase; transition: transform .16s ease, filter .16s ease, box-shadow .16s ease; }
+.cta:hover { transform: translateY(-2px); filter: brightness(1.05); box-shadow: 0 22px 52px -12px rgba(61, 205, 105, .66); }
+.cta:active { transform: scale(.98); }
+.cta:focus-visible { outline: 3px solid var(--cream); outline-offset: 4px; }
+.availability { margin: 16px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; letter-spacing: .2em; text-transform: uppercase; }
+@keyframes arrow-nudge { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(4px,-8px); } }
+@keyframes card-in { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: none; } }
+@media (max-height: 650px) { .content { justify-content: flex-end; padding-top: 110px; padding-bottom: 20px; } .card { padding-block: 22px; } .lock { width: 48px; height: 48px; margin-bottom: 14px; } .description { margin-top: 10px; } .cta { margin-top: 18px; padding-block: 16px; } }
+@media (min-width: 720px) { .stage__media { object-position: center 56%; } .content { padding-inline: 12px; } }
+@media (prefers-reduced-motion: reduce) { .hint__arrow, .card { animation: none; } .cta { transition: none; } }
